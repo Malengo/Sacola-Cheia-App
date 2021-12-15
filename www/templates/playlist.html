@@ -1,0 +1,67 @@
+<ion-view  title="{{produto}}"><ion-content  class="has-header" >
+    <div class="col-center col" ng-repeat="promo in promos" ng-if="promo.id==id">
+      <div class=""><img  style="float:left;" width="40px" height="50px"  ng-src="img/{{promo.image}}"></div>
+      <div class="vol"><p class="text-center" style="margin-top:10px; color:white;">{{promo.volume}}</p></div>
+      <img style="margin: auto;
+  display: block;" ng-src="http://groupcreativesolution.xyz/img/app/{{promo.imagemP}}">
+
+    <div class="col text-center price" >{{promo.valor | currency:"R$ "}}</div>
+    <div class="row">
+<div class="col-50 text-center">  <button  class="ion-plus-circled button button-clear  button-balanced" ng-click="adicionar(promo.nome,promo.valor,promo.image,promo.dataFinal)">&ensp;Lista de Compras</button></div>
+<!--<div class="col-50 text-center">  <button  class="ion-android-share-alt button button-clear  button-dark" ng-click="" width="100">&emsp;Compartilhar</button></div>-->
+      </div>
+</div>
+      <div class="col text-center" style="background-image: linear-gradient(180deg, #111, #111 100%, transparent 50%);color:white;">Compare Preços</div>
+      <ion-list>
+        <ion-item ng-repeat="promo in promos | filter:nome1 | orderBy: '+valor'"  class="card" ui-sref="app.playlist({id:promo.id})">
+          <div class="row">
+            <div class="col-25"><img style="margin-left:-10px;" height="50px" width="60px" ng-src="http://groupcreativesolution.xyz/img/app/{{promo.imagemP}}"></div>
+            <div class="col-50"><b><span class="item-text-wrap" style="color:black;text-transform: capitalize;" >{{promo.nome}}</span>
+      </b><p class="textValor" style="color:#ffc900;font-size:20px;">{{promo.valor | currency:"R$ "}}</p><p class="item-text-wrap">{{promo.complemento}}</p><p>{{promo.volume}}</p></div><div class="col-25"><img  style="float:right;" width="40px" height="50px"  ng-src="img/{{promo.image}}"></div></div>
+      <p align="center" class="item-text-wrap" style="color:green;">Promoção Válida Até: {{promo.dataFinal | date:'dd/MM/yyyy'}}</p></ion-item></ion-list>
+
+</ion-content>
+<div class="bar bar-footer">
+<div class=" col text-center">
+<icon class="ion-bag" style="font-size:30px;" ng-click="openModal()"></icon>{{total}}
+</div>
+</div>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <div class="row">
+        <div class="col-75 text-center"><h2>Lista de Compras</h2></div>
+      <div class="col-25 text-right"><icon class="ion-close assertive" ng-click="closeModal()"></icon></div>
+    </div>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="prom in list"  class="card" >
+        <div class="row">
+          <div class="col-25">
+          <img style="margin-left:-10px;" height="50px" width="60px" ng-src="http://groupcreativesolution.xyz/img/app/{{prom.image}}">
+        </div>
+        <div class="col-50"><b><span class="item-text-wrap" style="color:black;" >{{prom.nome}}</span></b>
+        <p class="textValor" style="color:#ffc900;font-size:20px;">{{prom.valor | currency:"R$ "}}</p>
+        <p class="item-text-wrap">{{promo.complemento}}</p>
+        <p>{{promo.volume}}</p>
+      </div>
+      <div class="col-25"><img  style="float:right;" width="40px" height="50px"  ng-src="img/{{prom.image}}"></div>
+    </div>
+      <p align="center" class="item-text-wrap" style="color:green;">Promoção Válida Até: {{prom.validade | date:'dd/MM/yyyy'}}</p>
+    <div class="text-center">  <button class="button ion-close dark text-center" ng-click="remove($index)">&emsp;Remover</button></div>
+    </ion-item>
+  </ion-list>
+    </ion-content>
+    <div class="bar bar-footer">
+    <div class=" col text-center">
+        <p class="textValor" style="color:green;font-size:20px;">Total
+      {{Vtotal | number:2 | currency:"R$ "}} </p>
+
+
+
+  </div>
+  </div>
+  </ion-modal-view>
+</script>
+</ion-view>

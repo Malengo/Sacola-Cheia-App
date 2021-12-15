@@ -1,0 +1,103 @@
+<ion-view  view-title="Promoções de Supermercado">
+  <div class="container fixed" style="margin-top: 20px;">
+
+    <div class="row">
+
+      <div class="col">
+   <label style="margin-top: 15px;" class="item item-input fixed-header" ng-show="mostra">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="search" ng-model="search" placeholder="Pesquisa por produto">
+  </label>
+
+
+          </div>
+
+    </div>
+  </div>
+      <ion-content class="has-header" padding="true" lazy-scroll>
+
+
+
+      	<ion-list class="card"><ion-item ng-repeat="promo in promos | filter:search" class="card" ui-sref="app.playlist({id:promo.id,produto:promo.nome})">
+     <div  ng-if="$index%10==0 && $index>1 && promo.nomeS != 'Supermercados do Papai' " class="center">
+       <ion-list class="card">
+         <ion-item class="card">
+           
+           
+           <img ng-src="https://scontent.fbjp1-1.fna.fbcdn.net/v/t1.0-9/17201097_1155231991253207_1654940164408074547_n.png?oh=f93564060b4ea2a8dfa0eeb0fba2ddbb&oe=5A636916" style="width:100%;"><br>
+           <button class="button-energized button button-block button-full text-center">Ligue Agora</button>
+          </ion-item>  
+        </ion-list>
+        </div>
+
+            <div class="row">
+            <div class="col-25">
+              <img style="margin-left:-10px;" height="70px" width="70px" src="http://groupcreativesolution.xyz/img/app/{{promo.imagemP}}" image-lazy-loader="android" image-lazy-distance-from-bottom-to-load="-200">
+            </div>
+            <div class="col-50"><b>
+              <span class="item-text-wrap" style="color:black;text-transform: capitalize;" >{{promo.nome}}</span>
+        </b><p class="textValor" style="color:#ffc900;font-size:20px;">{{promo.valor | currency:"R$ "}}</p>
+        <span class="item-text-wrap">{{promo.complemento}}</span>
+        <p>{{promo.volume}}</p>
+      </div>
+      <div class="col-25">
+        <img  style="float:right;" width="40px" height="50px"  ng-src="img/{{promo.image}}"></div></div>
+        <p align="center" class="item-text-wrap" style="color:green;">Promoção Válida Até: {{promo.dataFinal | date:'dd/MM/yyyy'}}</p>
+      </ion-item></ion-list>
+      	 <div class="card">
+    <div class="item item-text-wrap text-center">
+      Imagens Meramente Ilustrativas!!<br>
+      Salvo erros de Digitação!!
+    </div>
+  </div>
+  <ion-infinite-scroll
+
+    on-infinite="loadMore()"
+    distance="100%">
+  </ion-infinite-scroll>
+      </ion-content>
+      <div class="bar bar-footer">
+        <div class=" col text-center">
+        <icon class="ion-bag" style="font-size:30px;" ng-click="openModal()"></icon>{{total}}
+        </div>
+
+      </div>
+      <script id="my-modal.html" type="text/ng-template">
+        <ion-modal-view>
+          <ion-header-bar>
+            <div class="row">
+              <div class="col-75 text-center"><h2>Lista de Compras</h2></div>
+            <div class="col-25 text-right"><icon class="ion-close assertive" ng-click="closeModal()"></icon></div>
+          </div>
+          </ion-header-bar>
+          <ion-content>
+            <ion-list>
+              <ion-item ng-repeat="prom in list"  class="card" >
+              <div class="row">
+                <div class="col-25">
+                <img style="margin-left:-10px;" height="50px" width="60px" ng-src="http://groupcreativesolution.xyz/img/app/{{prom.image}}">
+              </div>
+              <div class="col-50"><b><span class="item-text-wrap" style="color:black;" >{{prom.nome}}</span></b>
+              <p class="textValor" style="color:#ffc900;font-size:20px;">{{prom.valor | currency:"R$ "}}</p>
+              <p class="item-text-wrap">{{promo.complemento}}</p>
+              <p>{{promo.volume}}</p>
+            </div>
+            <div class="col-25"><img  style="float:right;" width="40px" height="50px"  ng-src="img/{{prom.image}}"></div>
+          </div>
+            <p align="center" class="item-text-wrap" style="color:green;">Promoção Válida Até: {{prom.validade | date:'dd/MM/yyyy'}}</p>
+          <div class="text-center">  <button class="button ion-close dark text-center" ng-click="remove($index)">&emsp;Remover</button></div>
+          </ion-item>
+        </ion-list>
+          </ion-content>
+          <div class="bar bar-footer">
+          <div class=" col text-center">
+              <p class="textValor" style="color:green;font-size:20px;">Total
+            {{Vtotal | number:2 | currency:"R$ "}} </p>
+
+
+
+        </div>
+        </div>
+        </ion-modal-view>
+      </script>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view style="" class=" " id="page2" title="{{nome}}">
+
+
+<div class="container fixed" style="margin-top: 20px;">
+
+  <div class="row">
+
+    <div class="col">
+ <label style="margin-top: 15px;" class="item item-input fixed-header" ng-show="mostra">
+  <i class="icon ion-search placeholder-icon"></i>
+  <input type="search" ng-model="search" placeholder="Pesquisa por produto">
+</label>
+
+
+        </div>
+
+  </div>
+</div>
+    <ion-content class="has-header" padding="true">
+
+
+    <p class="item item-icon-left energized item-text-wrap message" ng-style="message" style="display:none;"><i class="icon ion-wifi"></i>{{text}}</p>
+
+    	<ion-list>
+        <ion-item ng-repeat="promo in promos | filter:search" ng-if="nome==promo.nomeS" class="card"  ui-sref="app.playlist({id:promo.id})">
+          <div class="row">
+            <div class="col-25">
+              <img style="margin-left:-10px;" height="50px" width="60px" ng-src="http://groupcreativesolution.xyz/img/app/{{promo.imagemP}}">
+            </div>
+            <div class="col-50"><b><span class="item-text-wrap" style="color:black;text-transform: capitalize;" >{{promo.nome}}</span>
+      </b><p class="textValor" style="color:#ffc900;font-size:20px;">{{promo.valor | currency:"R$ "}}</p><p class="item-text-wrap">{{promo.complemento}}</p><p>{{promo.volume}}</p></div><div class="col-25"><img  style="float:right;" width="40px" height="50px"  ng-src="img/{{promo.image}}"></div></div>
+      <p align="center" class="item-text-wrap" style="color:green;">Promoção Válida Até: {{promo.dataFinal | date:'dd/MM/yyyy'}}</p></ion-item></ion-list>
+    	 <div class="card">
+  <div class="item item-text-wrap text-center">
+    Imagens Meramente Ilustrativas!!<br>
+    Salvo erros de Digitação!!
+  </div>
+</div>
+    </ion-content>
+</ion-view>

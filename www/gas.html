@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <script src="js/admob.js"></script>
+
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .icone{
+            font-size: 50px;
+        }
+        .icon-circle{
+            border-radius: 70%;
+
+        }
+    </style>
+
+    <script src="js/app.js"></script>
+
+
+
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+
+
+  </head>
+  <body>
+  <div>
+      <div class="text-center"> <img class="text-center" src="img/sacola.png"></div>
+<div class="row">
+      <div class="col col-50 text-center icon-circle"><a class="icon-circle positive" href="home.html"><i class="ion-ios-cart icone"></i><br>Promoções Supermercados</a></div>
+     <div class="col col-50 text-center icon-circle"><a class="icon-circle assertive" ><i class="ion-fork icone"></i><br>Lanchonetes</a></div>
+
+      </div>
+    <div class="row" style="margin-top:50px;">
+      <div class="col col-50 text-center icon-circle"><a class="icon-circle calm" ><i class="ion-ios-flame icone"></i><br>Gás & Água</a></div>
+     <div class="col col-50 text-center icon-circle"><a class="icon-circle balanced" ><i class="ion-pizza icone"></i><br>Pizzaria</a></div>
+
+      </div>
+
+
+</div>
+<script type="text/javascript">
+var xml= new XMLHttpRequest();
+var url="http://groupcreativesolution.xyz/promocao.php";
+xml.open("GET",url);
+xml.send(null);
+xml.onreadystatechange=function(){
+if(xml.status==200 & xml.readyState===4){
+
+   window.localStorage.setItem("promocao",xml.responseText);
+
+}
+}
+</script>
+  </body>
+</html>

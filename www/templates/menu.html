@@ -1,0 +1,29 @@
+<ion-side-menus  enable-menu-with-back-views="true">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-energized">
+
+            <ion-nav-buttons >
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right"><button class="button button-icon icon ion-search" ng-click="mostrar();"></button></ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu style="background-color:#FFFFFF;" side="left" id="side-menu21">
+
+        <ion-content padding="false" class="side-menu-left ">
+            <div class="">
+                <a href="index.html"><img style="display: block; margin-left: auto; margin-right: auto;" src="img/sacola.png" height="auto" width="auto" href="index.html"></a>
+            </div>
+            <ion-list class=" " id="app" scrollbar-y="false">
+                <ion-item style="" menu-close="" ui-sref="app.playlists" id="side-menu21-list-item1" class="energized  ">Todas As Promoções</ion-item>
+
+                 <div  >
+                <ion-item  menu-close="" class=" texto-menu bar"  ng-class-odd="'striped'"  ng-repeat="promo in mercados">
+                  <span  ui-sref="app.cart({nomes:promo.nome,img:promo.img,fundo:promo.banner})">{{promo.nome}}</span></ion-item>
+                </div>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
